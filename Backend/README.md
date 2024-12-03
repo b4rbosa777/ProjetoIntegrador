@@ -8,6 +8,7 @@ Este é um projeto integrador para o curso do SENAI que une conhecimentos das á
 ### Backend
 O backend do sistema está sendo desenvolvido em **ASP.NET**, oferecendo uma estrutura robusta e escalável para o gerenciamento de dados dos sensores de monitoramento e controle.
 
+
 ### Frontend
 A interface do usuário é construída em **React**, proporcionando uma experiência dinâmica para o acompanhamento dos dados em tempo real e controle dos parâmetros da estufa.
 

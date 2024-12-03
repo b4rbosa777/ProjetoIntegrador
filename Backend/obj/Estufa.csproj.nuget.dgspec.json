@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\ProjetoIntegrador\\Backend\\Estufa.csproj": {}
+    "C:\\Users\\vinic\\OneDrive\\Área de Trabalho\\iot\\ProjetoIntegrador\\Backend\\Estufa.csproj": {}
   },
   "projects": {
-    "C:\\ProjetoIntegrador\\Backend\\Estufa.csproj": {
+    "C:\\Users\\vinic\\OneDrive\\Área de Trabalho\\iot\\ProjetoIntegrador\\Backend\\Estufa.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\ProjetoIntegrador\\Backend\\Estufa.csproj",
+        "projectUniqueName": "C:\\Users\\vinic\\OneDrive\\Área de Trabalho\\iot\\ProjetoIntegrador\\Backend\\Estufa.csproj",
         "projectName": "Estufa",
-        "projectPath": "C:\\ProjetoIntegrador\\Backend\\Estufa.csproj",
-        "packagesPath": "C:\\Users\\mathe\\.nuget\\packages\\",
-        "outputPath": "C:\\ProjetoIntegrador\\Backend\\obj\\",
+        "projectPath": "C:\\Users\\vinic\\OneDrive\\Área de Trabalho\\iot\\ProjetoIntegrador\\Backend\\Estufa.csproj",
+        "packagesPath": "C:\\Users\\vinic\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\vinic\\OneDrive\\Área de Trabalho\\iot\\ProjetoIntegrador\\Backend\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\mathe\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\vinic\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -98,7 +94,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
