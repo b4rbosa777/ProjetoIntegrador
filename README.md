@@ -1,7 +1,7 @@
 # Projeto Integrador SENAI: Estufa Inteligente com Controle Automatizado
 
 ## Introdução
-Este é um projeto integrador para o curso do SENAI que une conhecimentos das áreas de Tecnologia da Informação (TI) e Tecnologia da Automação (TA). O objetivo do projeto é desenvolver uma **estufa de plantação automatizada** com **irrigação por gotejamento**, capaz de controlar e monitorar automaticamente os níveis de temperatura e umidade, criando um ambiente ideal para o cultivo.
+Este é um projeto integrador para o curso do SENAI que une conhecimentos das áreas de Tecnologia da Informação (TI) e Tecnologia da Automação (TA). O objetivo do projeto é desenvolver uma **estufa de plantação automatizada** com **irrigação por gotejamento**, capaz de monitorar automaticamente os níveis de temperatura e umidade.
 
 ## Tecnologias Utilizadas
 
