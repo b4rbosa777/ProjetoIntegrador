@@ -15,12 +15,9 @@ const CardsPage = () => {
     soilMoisture: false,
   });
  
- 
- 
   // Função para buscar dados dos sensores
   const fetchAllData = async () => {
     try {
-      // Requisições para API de dados dos sensores
       const temperatureResponse = await axios.get('http://localhost:5271/api/Temperatura');
       const lastTemperature = temperatureResponse.data?.at(-1);
       const airHumidityResponse = await axios.get('http://localhost:5271/api/Umidade');
@@ -34,15 +31,13 @@ const CardsPage = () => {
  
       setSensorData({ temperature, airHumidity, soilMoisture });
  
-      // Verificação dos limites de alerta
       const newWarnings = {
         temperature: temperature > 25.0, // Temperatura acima de 25°C
-        airHumidity: airHumidity > 50.0,  // Umidade do ar acima de 50%
-        soilMoisture: soilMoisture > 40.0,  // Umidade do solo acima de 40%
+        airHumidity: airHumidity > 50.0, // Umidade do ar acima de 50%
+        soilMoisture: soilMoisture > 40.0, // Umidade do solo acima de 40%
       };
  
       setWarnings(newWarnings);
- 
     } catch (error) {
       console.error('Erro ao buscar dados da API:', error);
     }
@@ -50,12 +45,12 @@ const CardsPage = () => {
  
   useEffect(() => {
     fetchAllData();
-    const intervalId = setInterval(fetchAllData, 1000);  // Atualiza os dados a cada segundo
-    return () => clearInterval(intervalId);  // Limpa o intervalo quando o componente for desmontado
+    const intervalId = setInterval(fetchAllData, 3600000); // Atualiza os dados a cada 1 hora
+    return () => clearInterval(intervalId); // Limpa o intervalo quando o componente for desmontado
   }, []);
  
   return (
-<div
+    <div
       style={{
         display: 'flex',
         gap: '1.5rem',
@@ -63,29 +58,29 @@ const CardsPage = () => {
         justifyContent: 'center',
         padding: '20px',
       }}
->
-<DataCard
+    >
+      <DataCard
         title="Temperatura"
         value={sensorData.temperature}
         unit="°C"
         icon={<FaThermometerHalf />}
         warning={warnings.temperature}
       />
-<DataCard
+      <DataCard
         title="Umidade do Ar"
         value={sensorData.airHumidity}
         unit="%"
         icon={<FaTint />}
         warning={warnings.airHumidity}
       />
-<DataCard
+      <DataCard
         title="Umidade do Solo"
         value={sensorData.soilMoisture}
         unit="%"
         icon={<FaWater />}
         warning={warnings.soilMoisture}
       />
-</div>
+    </div>
   );
 };
  
