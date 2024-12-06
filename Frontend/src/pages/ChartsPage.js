@@ -49,16 +49,16 @@ const ChartsPage = () => {
     }
   };
  
-  // Função para formatar as datas no formato dd/MM/yyyy, HH:mm
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const year = date.getFullYear();
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    return `${day}/${month}/${year}, ${hours}:${minutes}`;
-  };
+ // Função para formatar as datas no formato dd/MM/yyyy, HH:mm
+ const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  return `${day}/${month}/${year}, ${hours}:${minutes}`;
+};
  
   // Função para buscar e filtrar os dados com base no intervalo
   const fetchChartData = async () => {
@@ -67,9 +67,9 @@ const ChartsPage = () => {
       const now = new Date();
  
       const [temperatureData, humidityData, soilMoistureData] = await Promise.all([
-        axios.get(`http://localhost:5271/api/Temperatura`),
-        axios.get(`http://localhost:5271/api/Umidade`),
-        axios.get(`http://localhost:5271/api/UmidadeTerra`),
+        axios.get('http://localhost:5271/api/Temperatura'),
+        axios.get('http://localhost:5271/api/Umidade') ,
+        axios.get('http://localhost:5271/api/UmidadeTerra')
       ]);
  
       // Função para filtrar os dados com base no intervalo de tempo
@@ -96,9 +96,17 @@ const ChartsPage = () => {
     }
   };
  
-  // Atualiza os dados sempre que o intervalo de tempo muda
+  // Atualiza os dados sempre que o intervalo de tempo muda ou após 1 hora
   useEffect(() => {
-    fetchChartData();
+    fetchChartData(); // Busca os dados inicialmente
+ 
+    // Inicia o intervalo para atualizar os dados a cada 1 hora
+    const interval = setInterval(() => {
+      fetchChartData();
+    }, 60 * 60 * 1000); // 1 hora em milissegundos
+ 
+    // Limpa o intervalo ao desmontar o componente
+    return () => clearInterval(interval);
   }, [timeRange]);
  
   // Configuração dos dados do gráfico
@@ -146,26 +154,26 @@ const ChartsPage = () => {
   };
  
   return (
-    <div style={{ padding: '1rem', textAlign: 'center', borderRadius: '8px' }}>
-      <h2 style={{ marginBottom: '1rem' }}>Gráficos de Dados</h2>
+<div style={{ padding: '1rem', textAlign: 'center', borderRadius: '8px' }}>
+<h2 style={{ marginBottom: '1rem' }}>Gráficos de Dados</h2>
  
       {/* Filtro de Intervalo de Tempo */}
-      <div style={{ marginBottom: '0.5rem' }}>
-        <label>Intervalo de Tempo: </label>
-        <select
+<div style={{ marginBottom: '0.5rem' }}>
+<label>Intervalo de Tempo: </label>
+<select
           value={timeRange}
           onChange={(e) => setTimeRange(e.target.value)}
           style={{ padding: '0.5rem', borderRadius: '5px', marginLeft: '0.5rem' }}
-        >
-          <option value="1h">Última Hora</option>
-          <option value="24h">Últimas 24 Horas</option>
-          <option value="7d">Últimos 7 Dias</option>
-          <option value="30d">Últimos 30 Dias</option>
-        </select>
-      </div>
+>
+<option value="1h">Última Hora</option>
+<option value="24h">Últimas 24 Horas</option>
+<option value="7d">Últimos 7 Dias</option>
+<option value="30d">Últimos 30 Dias</option>
+</select>
+</div>
  
       {/* Contêiner do Gráfico */}
-      <div
+<div
         style={{
           position: 'relative',
           width: '100%',
@@ -177,10 +185,10 @@ const ChartsPage = () => {
           borderRadius: '8px',
           boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
         }}
-      >
-        <Line data={data} options={options} />
-      </div>
-    </div>
+>
+<Line data={data} options={options} />
+</div>
+</div>
   );
 };
  

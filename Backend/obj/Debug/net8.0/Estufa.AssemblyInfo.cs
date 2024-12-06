@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Estufa")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c257df70511d9eb84ee22fe7f10a37d58300cb5a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3300af76278423947925ae98666d2dc73c4443a3")]
 [assembly: System.Reflection.AssemblyProductAttribute("Estufa")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Estufa")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -9,6 +9,8 @@ import requests
 import threading
 import time
 import subprocess
+import psutil
+
 
 # Variáveis globais para armazenar os caminhos, estados e dados
 frontend_path = None
@@ -46,10 +48,18 @@ def start_front():
     except Exception as e:
         print(f"Erro ao iniciar o Frontend: {e}")
 
-# Função para desligar o Frontend
+# Função para encerrar o Frontend
 def stop_front():
     toggle_light(front_canvas, "off")
-    print("Finalize o Frontend manualmente no terminal.")
+    try:
+        for proc in psutil.process_iter(['pid', 'name', 'cmdline']):
+            cmdline = proc.info.get('cmdline', [])
+            if cmdline and any("npm" in arg for arg in cmdline) or proc.info['name'] == 'node.exe':
+                proc.kill()
+                print(f"Frontend finalizado (PID: {proc.info['pid']}).")
+    except Exception as e:
+        print(f"Erro ao finalizar o Frontend: {e}")
+ 
 
 # Função para executar o Backend
 def start_back():
@@ -64,10 +74,17 @@ def start_back():
     except Exception as e:
         print(f"Erro ao iniciar o Backend: {e}")
 
-# Função para desligar o Backend
+# Função para encerrar o Backend
 def stop_back():
     toggle_light(back_canvas, "off")
-    print("Finalize o Backend manualmente no terminal.")
+    try:
+        for proc in psutil.process_iter(['pid', 'name', 'cmdline']):
+            cmdline = proc.info.get('cmdline', [])
+            if cmdline and any("dotnet" in arg for arg in cmdline):
+                proc.kill()
+                print(f"Backend finalizado (PID: {proc.info['pid']}).")
+    except Exception as e:
+        print(f"Erro ao finalizar o Backend: {e}")
 
 # Funções para gerar dados fictícios
 def gerar_temperatura():
@@ -185,7 +202,7 @@ frame_lights = tk.Frame(
     highlightthickness=4,  # Borda externa mais espessa
     highlightbackground="#00796b"  # Laranja vibrante para destacar
 )
-frame_lights.place(x=10, y=10, width=200, height=200)
+frame_lights.place(x=10, y=10, width=220, height=200)
 
 
 # Configuração das luzes e botões com design criativo e detalhado
@@ -210,11 +227,11 @@ ctk.CTkButton(
     hover_color="#3D8F41",  # Hover mais escuro para contraste
     text_color="white", 
     font=("Helvetica", 10, "bold"),
-    width=30,  # Mantendo tamanhos confortáveis
-    height=25,
+    width=1,  # Mantendo tamanhos confortáveis
+    height=10,
     border_width=2,  # Adiciona uma borda para destaque
     border_color="#2E7D32"  # Cor da borda para combinar com o botão
-).grid(row=0, column=2, padx=5)
+).grid(row=0, column=2, padx=1)
 
 ctk.CTkButton(
     frame_lights, 
@@ -225,11 +242,11 @@ ctk.CTkButton(
     hover_color="#D32F2F", 
     text_color="white", 
     font=("Helvetica", 10, "bold"),
-    width=10, 
-    height=25,
+    width=1, 
+    height=10,
     border_width=2, 
     border_color="#B71C1C"
-).grid(row=0, column=3, padx=5)
+).grid(row=0, column=3, padx=1)
 
 back_canvas = tk.Canvas(frame_lights, width=20, height=20, highlightthickness=0)
 back_canvas.grid(row=1, column=0, padx=5, pady=5)
@@ -252,11 +269,11 @@ ctk.CTkButton(
     hover_color="#3D8F41", 
     text_color="white", 
     font=("Helvetica", 10, "bold"),
-    width=30, 
-    height=25,
+    width=1, 
+    height=10,
     border_width=2, 
     border_color="#2E7D32"
-).grid(row=1, column=2, padx=5)
+).grid(row=1, column=2, padx=1)
 
 ctk.CTkButton(
     frame_lights, 
@@ -267,11 +284,11 @@ ctk.CTkButton(
     hover_color="#D32F2F", 
     text_color="white", 
     font=("Helvetica", 10, "bold"),
-    width=10, 
-    height=25,
+    width=1, 
+    height=10,
     border_width=2, 
     border_color="#B71C1C"
-).grid(row=1, column=3, padx=5)
+).grid(row=1, column=3, padx=1)
 
 server_canvas = tk.Canvas(frame_lights, width=20, height=20, highlightthickness=0)
 server_canvas.grid(row=2, column=0, padx=5, pady=5)
@@ -294,11 +311,11 @@ ctk.CTkButton(
     hover_color="#3D8F41", 
     text_color="white", 
     font=("Helvetica", 10, "bold"),
-    width=30, 
-    height=25,
+    width=1, 
+    height=10,
     border_width=2, 
     border_color="#2E7D32"
-).grid(row=2, column=2, padx=5)
+).grid(row=2, column=2, padx=1)
 
 ctk.CTkButton(
     frame_lights, 
@@ -309,11 +326,11 @@ ctk.CTkButton(
     hover_color="#D32F2F", 
     text_color="white", 
     font=("Helvetica", 10, "bold"),
-    width=10, 
-    height=25,
+    width=1, 
+    height=10,
     border_width=2, 
     border_color="#B71C1C"
-).grid(row=2, column=3, padx=5)
+).grid(row=2, column=3, padx=1)
 
 # Configuração inicial do customtkinter
 ctk.set_appearance_mode("System")  # Modo: "Light", "Dark", ou "System"
@@ -376,7 +393,7 @@ frame_gif = tk.Frame(
     highlightthickness=4,  # Espessura da borda externa
     highlightbackground="#00796b"  # Borda laranja vibrante
 )
-frame_gif.place(x=10, y=170, width=200, height=200)
+frame_gif.place(x=10, y=170, width=213, height=200)
 
 # Label estilizada para o GIF
 gif_label = tk.Label(
