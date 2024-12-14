@@ -18,6 +18,10 @@ A interface do usuário é construída em **React**, proporcionando uma experiê
 ## Conclusão
 Este projeto integrador representa uma aplicação prática dos conhecimentos adquiridos, aplicando TI e TA no desenvolvimento de uma solução para monitoramento e controle de condições agrícolas.
 
+## Video do Projeto Integrador
+
+Link: https://youtu.be/_-Exe3UinJg
+
 
 ## Diagrama de Sequência
 
